@@ -1,3 +1,5 @@
+import markupsafe
+
 from project import db, app
 
 
@@ -10,8 +12,8 @@ class Customer(db.Model):
     age = db.Column(db.Integer)
 
     def __init__(self, name, city, age):
-        self.name = name
-        self.city = city
+        self.name = markupsafe.escape(name)
+        self.city = markupsafe.escape(city)
         self.age = age
 
     def __repr__(self):
